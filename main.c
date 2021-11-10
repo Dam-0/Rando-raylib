@@ -16,7 +16,7 @@ int main(void)
     // Initialization
     //--------------------------------------------------------------------------------------
     const int screenWidth = 800;
-    const int screenHeight = 600;
+    const int screenHeight = 600; 
 
     InitWindow(screenWidth, screenHeight, "raylib - logo animation");
 
