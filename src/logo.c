@@ -20,6 +20,20 @@ int main(void)
 
     InitWindow(screenWidth, screenHeight, "raylib - logo animation");
 
+    //TODO
+    // add music to startup
+
+    /*
+
+    InitAudioDevice();
+    Music music = LoadMusicStream("/path/to/music.mp3");
+    PlayMusicStream(music);
+
+    float timePlayed = 0.0f;
+
+
+    */
+
     int logoPositionX = screenWidth/2 - 128;
     int logoPositionY = screenHeight/2 - 128;
 
@@ -41,6 +55,7 @@ int main(void)
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
+
         // Update
         //----------------------------------------------------------------------------------
         if (state == 0)                 // State 0: Small box blinking
@@ -76,18 +91,41 @@ int main(void)
                 lettersCount++;
                 framesCounter = 0;
             }
-
-            if (lettersCount >= 10)     // When all letters have appeared, just fade out everything
-            {
-                alpha -= 0.02f;
-
-                if (alpha <= 0.0f)
-                {
-                    alpha = 0.0f;
-                    state = 4;
-                }
-            }
         }
+
+        //Quit
+        if (IsKeyPressed(KEY_Q))
+        {
+            //UnloadMusicStream(music);
+            //CloseAudioDevice();
+            CloseWindow();
+        }
+
+
+        // Music
+        /*
+
+        UpdateMusicStream(music);   // Update music buffer with new stream data
+
+        // Restart music playing (stop and play)
+        if (IsKeyPressed(KEY_SPACE))
+        {
+            StopMusicStream(music);
+            PlayMusicStream(music);
+        }
+
+        // Pause/Resume music playing
+        if (IsKeyPressed(KEY_P))
+        {
+            pause = !pause;
+
+            if (pause) PauseMusicStream(music);
+            else ResumeMusicStream(music);
+        }
+
+        */
+
+
         //----------------------------------------------------------------------------------
 
         // Draw
@@ -124,10 +162,6 @@ int main(void)
                 DrawRectangle(GetScreenWidth()/2 - 112, GetScreenHeight()/2 - 112, 224, 224, Fade(RAYWHITE, alpha));
 
                 DrawText(TextSubtext("Damo", 0, lettersCount), GetScreenWidth()/2 - 44, GetScreenHeight()/2 + 48, 50, Fade(BLUE, alpha));
-            }
-            else if (state == 4)
-            {
-                CloseWindow();
             }
 
         EndDrawing();
