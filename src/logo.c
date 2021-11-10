@@ -16,9 +16,9 @@ int main(void)
     // Initialization
     //--------------------------------------------------------------------------------------
     const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int screenHeight = 600;
 
-    InitWindow(screenWidth, screenHeight, "raylib [shapes] example - logo animation");
+    InitWindow(screenWidth, screenHeight, "raylib - logo animation");
 
     int logoPositionX = screenWidth/2 - 128;
     int logoPositionY = screenHeight/2 - 128;
@@ -88,23 +88,6 @@ int main(void)
                 }
             }
         }
-        else if (state == 4)            // State 4: Reset and Replay
-        {
-            if (IsKeyPressed(KEY_R))
-            {
-                framesCounter = 0;
-                lettersCount = 0;
-
-                topSideRecWidth = 16;
-                leftSideRecHeight = 16;
-
-                bottomSideRecWidth = 16;
-                rightSideRecHeight = 16;
-
-                alpha = 1.0f;
-                state = 0;          // Return to State 0
-            }
-        }
         //----------------------------------------------------------------------------------
 
         // Draw
@@ -115,36 +98,36 @@ int main(void)
 
             if (state == 0)
             {
-                if ((framesCounter/15)%2) DrawRectangle(logoPositionX, logoPositionY, 16, 16, BLACK);
+                if ((framesCounter/15)%2) DrawRectangle(logoPositionX, logoPositionY, 16, 16, BLUE);
             }
             else if (state == 1)
             {
-                DrawRectangle(logoPositionX, logoPositionY, topSideRecWidth, 16, BLACK);
-                DrawRectangle(logoPositionX, logoPositionY, 16, leftSideRecHeight, BLACK);
+                DrawRectangle(logoPositionX, logoPositionY, topSideRecWidth, 16, BLUE);
+                DrawRectangle(logoPositionX, logoPositionY, 16, leftSideRecHeight, BLUE);
             }
             else if (state == 2)
             {
-                DrawRectangle(logoPositionX, logoPositionY, topSideRecWidth, 16, BLACK);
-                DrawRectangle(logoPositionX, logoPositionY, 16, leftSideRecHeight, BLACK);
+                DrawRectangle(logoPositionX, logoPositionY, topSideRecWidth, 16, BLUE);
+                DrawRectangle(logoPositionX, logoPositionY, 16, leftSideRecHeight, BLUE);
 
-                DrawRectangle(logoPositionX + 240, logoPositionY, 16, rightSideRecHeight, BLACK);
-                DrawRectangle(logoPositionX, logoPositionY + 240, bottomSideRecWidth, 16, BLACK);
+                DrawRectangle(logoPositionX + 240, logoPositionY, 16, rightSideRecHeight, BLUE);
+                DrawRectangle(logoPositionX, logoPositionY + 240, bottomSideRecWidth, 16, BLUE);
             }
             else if (state == 3)
             {
-                DrawRectangle(logoPositionX, logoPositionY, topSideRecWidth, 16, Fade(BLACK, alpha));
-                DrawRectangle(logoPositionX, logoPositionY + 16, 16, leftSideRecHeight - 32, Fade(BLACK, alpha));
+                DrawRectangle(logoPositionX, logoPositionY, topSideRecWidth, 16, Fade(BLUE, alpha));
+                DrawRectangle(logoPositionX, logoPositionY + 16, 16, leftSideRecHeight - 32, Fade(BLUE, alpha));
 
-                DrawRectangle(logoPositionX + 240, logoPositionY + 16, 16, rightSideRecHeight - 32, Fade(BLACK, alpha));
-                DrawRectangle(logoPositionX, logoPositionY + 240, bottomSideRecWidth, 16, Fade(BLACK, alpha));
+                DrawRectangle(logoPositionX + 240, logoPositionY + 16, 16, rightSideRecHeight - 32, Fade(BLUE, alpha));
+                DrawRectangle(logoPositionX, logoPositionY + 240, bottomSideRecWidth, 16, Fade(BLUE, alpha));
 
                 DrawRectangle(GetScreenWidth()/2 - 112, GetScreenHeight()/2 - 112, 224, 224, Fade(RAYWHITE, alpha));
 
-                DrawText(TextSubtext("Damo", 0, lettersCount), GetScreenWidth()/2 - 44, GetScreenHeight()/2 + 48, 50, Fade(BLACK, alpha));
+                DrawText(TextSubtext("Damo", 0, lettersCount), GetScreenWidth()/2 - 44, GetScreenHeight()/2 + 48, 50, Fade(BLUE, alpha));
             }
             else if (state == 4)
             {
-                DrawText("[R] REPLAY", 340, 200, 20, GRAY);
+                CloseWindow();
             }
 
         EndDrawing();
